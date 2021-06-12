@@ -5,7 +5,9 @@ import ShoppingCartItens from '../components/ShoppingCartItens';
 //tela de carrinho de compras
 export default function ShoppingCart() {
     return (
-        <ScrollView>
+        <ScrollView style={{
+            backgroundColor: '#FFF'
+        }}>
             <Header />
             <ShoppingCartItens />
         </ScrollView>

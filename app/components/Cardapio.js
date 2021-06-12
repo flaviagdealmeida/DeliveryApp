@@ -4,11 +4,15 @@ import * as config from '../config/apiConfig';
 import * as services from '../services/deliveryServices';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { adicionarItem } from '../action/deliveryActions';
+
 
 export default function Cardapio() {
 
-    const [cardapio, setCardapio] = useState([]); //Hook
-    const navigation = useNavigation(); //Hook
+    const [cardapio, setCardapio] = useState([]); //Hook estado do componente
+    const navigation = useNavigation(); //Hook navegação
+    const dispatch = useDispatch(); //hoork react-reduce
 
     //função para consultar os itens do cardapio
     const consultarCardapio = () => {
@@ -57,7 +61,11 @@ export default function Cardapio() {
                                         <Button
                                             mode="outlined"
                                             icon="cart-outline"
-                                            onPress={ () => navigation.navigate('shopping-cart') }
+                                            onPress={ () => {
+                                                dispatch(adicionarItem(item));
+
+                                                navigation.navigate('shopping-cart') 
+                                            }}
                                         >
                                             Adicionar ao pedido
                                         </Button>
